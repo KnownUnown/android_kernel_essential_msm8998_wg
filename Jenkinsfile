@@ -1,7 +1,12 @@
 // -*-Groovy-*-
 
 pipeline {
-    agent any
+    agent {
+        node {
+            label 'aws-ec2-fargate'
+        }
+    }
+
     environment {
         CC = 'clang'
         ARCH = 'arm64'
