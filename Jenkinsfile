@@ -39,8 +39,8 @@ pipeline {
         stage('Build: Kernel') {
             steps {
                 dir('kernel') {
-                    sh 'make mata_defconfig'
-                    sh 'make'
+                    sh 'CC=clang make mata_defconfig'
+                    sh 'CC=clang make'
                 }
             }
         }
@@ -48,7 +48,7 @@ pipeline {
         stage('Build: WLAN Module') {
             steps {
                 dir('qcacld-3.0') {
-                    sh 'make'
+                    sh 'CC=clang make'
                     sh '${CROSS_COMPILE}strip --strip-debug wlan.ko'
                 }
             }
