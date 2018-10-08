@@ -29,7 +29,7 @@ pipeline {
                     dir('ndk') {
                         sh 'curl https://dl.google.com/android/repository/android-ndk-r18-linux-x86_64.zip > ndk.zip'
                         sh 'unzip ndk.zip && rm ndk.zip'
-                        sh 'mv android-ndk-r18/* . && rm android-ndk-r18'
+                        sh 'mv android-ndk-r18/* . && rm -r android-ndk-r18'
                     }
 
                 }
