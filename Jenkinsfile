@@ -57,4 +57,5 @@ pipeline {
         stage('Upload') {
             sh('./upload-github-release-asset.sh github_api_token=$GITHUB_RELEASE_KEY owner=KnownUnown repo=android_kernel_essential_msm8998_wg tag=$GIT_TAG filename=./kernel.$GIT_TAG.zip')
         }
+    }
 }
