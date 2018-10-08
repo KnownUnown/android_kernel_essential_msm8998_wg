@@ -15,7 +15,7 @@ pipeline {
     stages {
         stage('Build: Preparation') {
             steps {
-                checkout scm: [$class: 'RepoScm', manifestRepositoryUrl: pwd()]
+                checkout scm: [$class: 'RepoScm', manifestRepositoryUrl: pwd(), manifestBranch: "refs/tags/${env.GIT_TAG}"]
                 dir('toolchain') {
                     dir('clang') {
                         sh 'curl https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/master/clang-4679922.tar.gz > clang.tar.gz'
