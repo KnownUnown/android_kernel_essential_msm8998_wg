@@ -23,13 +23,13 @@ pipeline {
                 checkout scm: [$class: 'RepoScm', manifestRepositoryUrl: pwd(), manifestBranch: "refs/tags/${env.GIT_TAG}"]
                 dir('toolchain') {
                     dir('clang') {
-                        sh 'curl https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/master/clang-4679922.tar.gz > clang.tar.gz'
-                        sh 'tar -xzvf clang.tar.gz && rm clang.tar.gz'
+                        sh 'curl https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/master/clang-4053586.tar.gz > clang.tar.gz'
+                        sh 'tar -xzf clang.tar.gz && rm clang.tar.gz'
                     }
                     dir('ndk') {
-                        sh 'curl https://dl.google.com/android/repository/android-ndk-r18-linux-x86_64.zip > ndk.zip'
-                        sh 'unzip ndk.zip && rm ndk.zip'
-                        sh 'mv android-ndk-r18/* . && rm -r android-ndk-r18'
+                        sh 'curl https://dl.google.com/android/repository/android-ndk-r16b-linux-x86_64.zip > ndk.zip'
+                        sh 'unzip -q ndk.zip && rm ndk.zip'
+                        sh 'mv android-ndk-r16b/* . && rm -r android-ndk-r16b'
                     }
 
                 }
