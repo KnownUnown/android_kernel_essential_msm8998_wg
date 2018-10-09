@@ -3,7 +3,7 @@
 pipeline {
     agent {
         node {
-            label 'aws-ec2-fargate'
+            label 'linux-builder'
         }
     }
 
