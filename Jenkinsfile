@@ -61,8 +61,8 @@ pipeline {
         stage('Package') {
             steps {
                 dir("AnyKernel2") {
-                    checkout(['$class': 'GitSCM', branches: [[ $name: '9d7f85807fd32f44dda8eaf89ec0bab9977b82cd' ]],
-                              userRemoteConfigs: [[ url: 'https://github.com/osm0sis/AnyKernel2' ]]])
+                    checkout([$class: 'GitSCM', branches: [[name: '9d7f85807fd32f44dda8eaf89ec0bab9977b82cd']],
+                              userRemoteConfigs: [[url: 'https://github.com/osm0sis/AnyKernel2']]])
 
                     sh 'mv -f ../kernel/arch/arm64/boot/Image.gz-dtb zImage'
                     sh 'mv -f ../anykernel.sh .'
