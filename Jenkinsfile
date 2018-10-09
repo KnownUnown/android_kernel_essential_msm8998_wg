@@ -45,14 +45,17 @@ pipeline {
             }
         }
 
+        /*
         stage('Build: WLAN Module') {
             steps {
                 dir('qcacld-3.0') {
+                    sh ''
                     sh 'CC=clang make'
                     sh '${CROSS_COMPILE}strip --strip-debug wlan.ko'
                 }
             }
         }
+        */
 
         stage('Package') {
             steps {
