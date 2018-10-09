@@ -61,7 +61,9 @@ pipeline {
         stage('Package') {
             steps {
                 dir("AnyKernel2") {
-                    git url: 'https://github.com/osm0sis/AnyKernel2', branch: 'fdefc8930cad439225ac8d785061a2eb757439af'
+                    checkout(['$class': 'GitSCM', branches: [[ $name: '9d7f85807fd32f44dda8eaf89ec0bab9977b82cd' ]],
+                              userRemoteConfigs: [[ url: 'https://github.com/osm0sis/AnyKernel2' ]]])
+
                     sh 'mv -f ../kernel/arch/arm64/boot/Image.gz-dtb zImage'
                     sh 'mv -f ../anykernel.sh .'
                     sh 'sed -i "" "s/{TAG}/$GIT_TAG/g" anykernel.sh'
