@@ -17,6 +17,7 @@ pipeline {
         GIT_TAG = sh('returnStdout': true, script: 'git describe --abbrev=0 --tags').trim()
         GITHUB_RELEASE_KEY = credentials('jenkins-gh-release-key')
     }
+
     stages {
         stage('Build: Preparation') {
             steps {
@@ -72,8 +73,14 @@ pipeline {
 
         stage('Upload') {
             steps {
-                sh('./upload-github-release-asset.sh github_api_token=$GITHUB_RELEASE_KEY owner=KnownUnown repo=android_kernel_essential_msm8998_wg tag=$GIT_TAG filename=./kernel.$GIT_TAG.zip')
+                sh './upload-github-release-asset.sh github_api_token=$GITHUB_RELEASE_KEY owner=KnownUnown repo=android_kernel_essential_msm8998_wg tag=$GIT_TAG filename=./kernel.$GIT_TAG.zip'
             }
+        }
+    }
+
+    post {
+        cleanup {
+            cleanWs cleanWhenAborted: true, cleanWhenFailure: false
         }
     }
 }
