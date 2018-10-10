@@ -66,7 +66,7 @@ pipeline {
 
                     sh 'mv -f ../kernel/arch/arm64/boot/Image.gz-dtb zImage'
                     sh 'mv -f ../anykernel.sh .'
-                    sh 'sed -i "" "s/{TAG}/$GIT_TAG/g" anykernel.sh'
+                    sh 'sed -i "" -s "s/{TAG}/$GIT_TAG/g" anykernel.sh'
                     sh 'zip -r9 ../kernel.$GIT_TAG.zip * -x .git README.md *placeholder'
                 }
                 archiveArtifacts artifacts: 'kernel*.zip'
