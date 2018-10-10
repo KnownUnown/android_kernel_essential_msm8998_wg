@@ -41,7 +41,7 @@ pipeline {
             steps {
                 dir('kernel') {
                     sh 'CC=clang make mata_defconfig'
-                    sh 'CC=clang make'
+                    sh 'CC=clang make -j4'
                 }
             }
         }
